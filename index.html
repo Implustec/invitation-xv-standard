@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis XV Años - Sofía Valentina</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            light: '#F3E5AB',
+                            DEFAULT: '#D4AF37',
+                            dark: '#AA8C2C',
+                        },
+                        roseGold: {
+                            light: '#FDEEE9',
+                            DEFAULT: '#E8A39C',
+                            dark: '#C27872',
+                        },
+                        softBlush: '#FFF5F5',
+                        champagne: '#FDFBF7'
+                    },
+                    fontFamily: {
+                        cinzel: ['Cinzel', 'serif'],
+                        script: ['Great Vibes', 'cursive'],
+                        sans: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="relative antialiased selection:bg-roseGold selection:text-white">
+
+    <!-- Música de fondo (Simulada / Opcional) -->
+    <div class="fixed bottom-5 right-5 z-50">
+        <button id="audioToggle" class="w-12 h-12 rounded-full gold-gradient-bg text-white shadow-xl flex items-center justify-center transition-transform hover:scale-110 focus:outline-none">
+            <i id="audioIcon" class="fa-solid fa-music animate-spin"></i>
+        </button>
+        <audio id="bgMusic" loop>
+            <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf756.mp3?filename=gentle-piano-love-110038.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <!-- HERO SECTION -->
+    <header class="relative min-h-screen flex flex-col items-center justify-between text-center px-6 py-12 bg-gradient-to-b from-roseGold-light via-softBlush to-champagne overflow-hidden">
+        <!-- Decorative Background Circles -->
+        <div class="absolute -top-24 -left-24 w-72 h-72 rounded-full bg-roseGold/20 blur-3xl pointer-events-none"></div>
+        <div class="absolute top-1/2 -right-24 w-80 h-80 rounded-full bg-gold/15 blur-3xl pointer-events-none"></div>
+
+        <!-- Top Header Text -->
+        <div class="z-10 animate-fade-in">
+            <span class="tracking-[0.3em] uppercase text-xs text-gold-dark font-cinzel font-semibold">Nuestra Querida Hija</span>
+            <div class="w-12 h-[1px] bg-gold mx-auto mt-2"></div>
+        </div>
+
+        <!-- Center Content -->
+        <div class="z-10 my-auto py-6">
+            <div class="relative w-48 h-48 sm:w-56 sm:h-56 mx-auto mb-8 rounded-full p-1.5 gold-gradient-bg shadow-2xl">
+                <img src="https://placehold.co/600x600/fdeee9/c27872?text=Sof%C3%ADa" alt="Sofía Valentina" class="w-full h-full object-cover rounded-full border-4 border-white shadow-inner">
+            </div>
+            <h1 class="font-script text-6xl sm:text-7xl text-roseGold-dark mb-2 drop-shadow-sm">Mis XV Años</h1>
+            <h2 class="font-cinzel text-3xl sm:text-4xl font-bold tracking-widest text-neutral-800 uppercase">Sofía Valentina</h2>
+            <p class="font-sans font-light tracking-widest text-sm text-neutral-600 mt-3">SÁBADO • 14 • NOVIEMBRE • 2026</p>
+        </div>
+
+        <!-- Scroll down indicator -->
+        <div class="z-10 animate-bounce pb-4">
+            <a href="#countdown" class="text-gold-dark text-xl">
+                <i class="fa-solid fa-chevron-down"></i>
+            </a>
+        </div>
+    </header>
+
+    <!-- COUNTDOWN SECTION -->
+    <section id="countdown" class="py-16 px-6 bg-white relative">
+        <div class="max-w-xl mx-auto text-center">
+            <h3 class="font-cinzel text-xl sm:text-2xl font-semibold text-neutral-800 mb-2">Cuenta Regresiva</h3>
+            <p class="text-sm text-neutral-500 mb-8 font-light">El gran día está más cerca de lo que imaginas</p>
+            
+            <div class="grid grid-cols-4 gap-3 sm:gap-6">
+                <div class="glass-card p-4 rounded-2xl shadow-sm border border-gold/30">
+                    <span id="days" class="block font-cinzel text-2xl sm:text-4xl font-bold text-gold-dark">00</span>
+                    <span class="text-[10px] sm:text-xs uppercase tracking-wider text-neutral-500 font-medium">Días</span>
+                </div>
+                <div class="glass-card p-4 rounded-2xl shadow-sm border border-gold/30">
+                    <span id="hours" class="block font-cinzel text-2xl sm:text-4xl font-bold text-gold-dark">00</span>
+                    <span class="text-[10px] sm:text-xs uppercase tracking-wider text-neutral-500 font-medium">Horas</span>
+                </div>
+                <div class="glass-card p-4 rounded-2xl shadow-sm border border-gold/30">
+                    <span id="minutes" class="block font-cinzel text-2xl sm:text-4xl font-bold text-gold-dark">00</span>
+                    <span class="text-[10px] sm:text-xs uppercase tracking-wider text-neutral-500 font-medium">Minutos</span>
+                </div>
+                <div class="glass-card p-4 rounded-2xl shadow-sm border border-gold/30">
+                    <span id="seconds" class="block font-cinzel text-2xl sm:text-4xl font-bold text-gold-dark">00</span>
+                    <span class="text-[10px] sm:text-xs uppercase tracking-wider text-neutral-500 font-medium">Segundos</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INSPIRATIONAL QUOTE -->
+    <section class="py-14 px-6 bg-softBlush text-center relative overflow-hidden">
+        <div class="max-w-lg mx-auto relative z-10">
+            <i class="fa-solid fa-quote-left text-3xl text-roseGold mb-4 opacity-60"></i>
+            <p class="font-script text-2xl sm:text-3xl text-neutral-700 leading-relaxed mb-4">
+                "Hay momentos en la vida que son inolvidables, compartirlos con las personas que amas los hace eternos."
+            </p>
+            <div class="w-16 h-[1px] bg-gold mx-auto mb-3"></div>
+            <span class="font-cinzel text-xs tracking-widest uppercase text-neutral-600 font-medium">Con todo mi amor</span>
+        </div>
+    </section>
+
+    <!-- EVENT DETAILS & LOCATIONS -->
+    <section class="py-16 px-6 bg-champagne">
+        <div class="max-w-4xl mx-auto text-center mb-12">
+            <span class="text-xs uppercase tracking-[0.3em] text-gold-dark font-cinzel font-semibold">¿Dónde y Cuándo?</span>
+            <h2 class="font-cinzel text-3xl font-bold text-neutral-800 mt-2">Detalles del Evento</h2>
+            <div class="w-12 h-[1px] bg-gold mx-auto mt-3"></div>
+        </div>
+
+        <div class="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Ceremonia Card -->
+            <div class="glass-card p-8 rounded-3xl shadow-xl flex flex-col justify-between transform transition duration-300 hover:-translate-y-1">
+                <div>
+                    <div class="w-14 h-14 rounded-2xl rose-gradient-bg text-white flex items-center justify-center text-xl mx-auto mb-6 shadow-md">
+                        <i class="fa-solid fa-church"></i>
+                    </div>
+                    <h3 class="font-cinzel text-xl font-bold text-neutral-800 mb-2">Ceremonia Religiosa</h3>
+                    <p class="text-sm text-neutral-600 font-medium mb-1">Parroquia Nuestra Señora de la Luz</p>
+                    <p class="text-xs text-neutral-500 mb-4">Av. de la Paz #450, Col. Centro</p>
+                    <div class="bg-roseGold-light/40 py-2 px-4 rounded-xl inline-block mb-6">
+                        <span class="text-xs font-semibold text-roseGold-dark"><i class="fa-regular fa-clock mr-1"></i> 5:00 PM</span>
+                    </div>
+                </div>
+                <a href="https://maps.google.com" target="_blank" class="w-full py-3 rounded-xl border border-gold text-gold-dark font-cinzel text-xs uppercase tracking-wider font-semibold hover:bg-gold hover:text-white transition-all shadow-sm flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-location-dot"></i> Ver Ubicación
+                </a>
+            </div>
+
+            <!-- Recepción Card -->
+            <div class="glass-card p-8 rounded-3xl shadow-xl flex flex-col justify-between transform transition duration-300 hover:-translate-y-1">
+                <div>
+                    <div class="w-14 h-14 rounded-2xl gold-gradient-bg text-white flex items-center justify-center text-xl mx-auto mb-6 shadow-md">
+                        <i class="fa-solid fa-glass-cheers"></i>
+                    </div>
+                    <h3 class="font-cinzel text-xl font-bold text-neutral-800 mb-2">Recepción & Fiesta</h3>
+                    <p class="text-sm text-neutral-600 font-medium mb-1">Salón de Eventos "Grand Imperial"</p>
+                    <p class="text-xs text-neutral-500 mb-4">Blvd. Las Rosas #1200, Zona Hotelera</p>
+                    <div class="bg-gold-light/30 py-2 px-4 rounded-xl inline-block mb-6">
+                        <span class="text-xs font-semibold text-gold-dark"><i class="fa-regular fa-clock mr-1"></i> 7:30 PM</span>
+                    </div>
+                </div>
+                <a href="https://maps.google.com" target="_blank" class="w-full py-3 rounded-xl gold-gradient-bg text-white font-cinzel text-xs uppercase tracking-wider font-semibold hover:opacity-95 transition-all shadow-md flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-location-dot"></i> Ver Ubicación
+                </a>
+            </div>
+        </div>
+
+        <!-- Parking Notice -->
+        <div class="max-w-3xl mx-auto mt-8">
+            <div class="bg-white/80 border border-gold/40 p-5 rounded-2xl shadow-sm flex items-center gap-4">
+                <div class="w-10 h-10 rounded-full bg-gold/20 text-gold-dark flex items-center justify-center shrink-0">
+                    <i class="fa-solid fa-car"></i>
+                </div>
+                <div class="text-left">
+                    <h4 class="font-cinzel text-sm font-bold text-neutral-800">Estacionamiento Disponible</h4>
+                    <p class="text-xs text-neutral-600 mt-0.5">El salón cuenta con valet parking gratuito y seguridad privada durante todo el evento al presentar el código que se les proporcionará una vez enviado el formulario de asistencia.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TIMELINE SECTION -->
+    <section class="py-16 px-6 bg-white">
+        <div class="max-w-4xl mx-auto text-center mb-12">
+            <span class="text-xs uppercase tracking-[0.3em] text-gold-dark font-cinzel font-semibold">Itinerario</span>
+            <h2 class="font-cinzel text-3xl font-bold text-neutral-800 mt-2">Línea del Tiempo</h2>
+            <div class="w-12 h-[1px] bg-gold mx-auto mt-3"></div>
+        </div>
+
+        <div class="max-w-xl mx-auto relative border-l-2 border-gold/30 ml-4 sm:ml-auto space-y-8 pl-6">
+            <!-- Timeline Item 1 -->
+            <div class="relative">
+                <div class="absolute -left-[31px] top-0 w-4 h-4 rounded-full bg-gold border-4 border-white shadow"></div>
+                <span class="text-xs font-bold text-gold-dark tracking-wider">05:00 PM</span>
+                <h4 class="font-cinzel text-base font-bold text-neutral-800 mt-0.5">Ceremonia Religiosa</h4>
+                <p class="text-xs text-neutral-500 mt-1">Inicio puntual de la misa en honor a Sofía.</p>
+            </div>
+            <!-- Timeline Item 2 -->
+            <div class="relative">
+                <div class="absolute -left-[31px] top-0 w-4 h-4 rounded-full bg-gold border-4 border-white shadow"></div>
+                <span class="text-xs font-bold text-gold-dark tracking-wider">07:30 PM</span>
+                <h4 class="font-cinzel text-base font-bold text-neutral-800 mt-0.5">Recepción de Invitados</h4>
+                <p class="text-xs text-neutral-500 mt-1">Llegada al salón y acomodo en mesas asignadas.</p>
+            </div>
+            <!-- Timeline Item 3 -->
+            <div class="relative">
+                <div class="absolute -left-[31px] top-0 w-4 h-4 rounded-full bg-gold border-4 border-white shadow"></div>
+                <span class="text-xs font-bold text-gold-dark tracking-wider">08:30 PM</span>
+                <h4 class="font-cinzel text-base font-bold text-neutral-800 mt-0.5">Entrada Triunfal & Vals</h4>
+                <p class="text-xs text-neutral-500 mt-1">Presentación oficial y primer vals de la quinceañera.</p>
+            </div>
+            <!-- Timeline Item 4 -->
+            <div class="relative">
+                <div class="absolute -left-[31px] top-0 w-4 h-4 rounded-full bg-gold border-4 border-white shadow"></div>
+                <span class="text-xs font-bold text-gold-dark tracking-wider">09:30 PM</span>
+                <h4 class="font-cinzel text-base font-bold text-neutral-800 mt-0.5">Banquete & Brindis</h4>
+                <p class="text-xs text-neutral-500 mt-1">Cena especial de celebración y palabras de agradecimiento.</p>
+            </div>
+            <!-- Timeline Item 5 -->
+            <div class="relative">
+                <div class="absolute -left-[31px] top-0 w-4 h-4 rounded-full bg-gold border-4 border-white shadow"></div>
+                <span class="text-xs font-bold text-gold-dark tracking-wider">11:00 PM</span>
+                <h4 class="font-cinzel text-base font-bold text-neutral-800 mt-0.5">Fiesta & ¡A Bailar!</h4>
+                <p class="text-xs text-neutral-500 mt-1">Apertura de pista con música en vivo y DJ.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALLERY SECTION -->
+    <section class="py-16 px-6 bg-champagne">
+        <div class="max-w-4xl mx-auto text-center mb-12">
+            <span class="text-xs uppercase tracking-[0.3em] text-gold-dark font-cinzel font-semibold">Momentos</span>
+            <h2 class="font-cinzel text-3xl font-bold text-neutral-800 mt-2">Galería de Fotos</h2>
+            <div class="w-12 h-[1px] bg-gold mx-auto mt-3"></div>
+        </div>
+
+        <div class="max-w-4xl mx-auto grid grid-cols-2 sm:grid-cols-3 gap-4">
+            <div class="overflow-hidden rounded-2xl shadow-md group h-48 sm:h-64">
+                <img src="https://placehold.co/600x800/fdeee9/c27872?text=Foto+1" alt="Sofía 1" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+            </div>
+            <div class="overflow-hidden rounded-2xl shadow-md group h-48 sm:h-64">
+                <img src="https://placehold.co/600x800/fff5f5/d4af37?text=Foto+2" alt="Sofía 2" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+            </div>
+            <div class="overflow-hidden rounded-2xl shadow-md group h-48 sm:h-64 col-span-2 sm:col-span-1">
+                <img src="https://placehold.co/600x800/fdfbf7/aa8c2c?text=Foto+3" alt="Sofía 3" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+            </div>
+        </div>
+    </section>
+
+    <!-- GIFTS & BANK TRANSFER -->
+    <section class="py-16 px-6 bg-white">
+        <div class="max-w-4xl mx-auto text-center mb-12">
+            <span class="text-xs uppercase tracking-[0.3em] text-gold-dark font-cinzel font-semibold">Regalos & Detalles</span>
+            <h2 class="font-cinzel text-3xl font-bold text-neutral-800 mt-2">Mesa de Regalos</h2>
+            <div class="w-12 h-[1px] bg-gold mx-auto mt-3"></div>
+            <p class="text-sm text-neutral-500 mt-3 max-w-md mx-auto font-light">Su presencia es nuestro mejor regalo, pero si desean tener un detalle adicional, aquí encontrarán algunas opciones:</p>
+        </div>
+
+        <div class="max-w-xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <!-- Gift Registry Card -->
+            <div class="glass-card p-6 rounded-3xl shadow-sm text-center border border-gold/30 flex flex-col justify-between">
+                <div>
+                    <div class="w-12 h-12 rounded-full bg-gold/15 text-gold-dark flex items-center justify-center text-lg mx-auto mb-4">
+                        <i class="fa-solid fa-gift"></i>
+                    </div>
+                    <h3 class="font-cinzel text-lg font-bold text-neutral-800 mb-1">Mesa en Tienda</h3>
+                    <p class="text-xs text-neutral-500 mb-4">Liverpool / Palacio de Hierro<br><strong>Evento:</strong> #50492819</p>
+                </div>
+                <a href="#" class="w-full py-2.5 rounded-xl border border-gold text-gold-dark font-cinzel text-xs uppercase tracking-wider font-semibold hover:bg-gold hover:text-white transition-all">Ver Mesa</a>
+            </div>
+
+            <!-- Bank Transfer Card -->
+            <div class="glass-card p-6 rounded-3xl shadow-sm text-center border border-gold/30 flex flex-col justify-between">
+                <div>
+                    <div class="w-12 h-12 rounded-full bg-roseGold/20 text-roseGold-dark flex items-center justify-center text-lg mx-auto mb-4">
+                        <i class="fa-solid fa-credit-card"></i>
+                    </div>
+                    <h3 class="font-cinzel text-lg font-bold text-neutral-800 mb-1">Lluvia de Sobres / Transferencia</h3>
+                    <p class="text-xs text-neutral-500 mb-2">BBVA México<br><span id="accountNum" class="font-mono font-bold text-neutral-700">4152 3100 9876 5432</span></p>
+                </div>
+                <button onclick="copyAccount()" id="copyBtn" class="w-full py-2.5 rounded-xl gold-gradient-bg text-white font-cinzel text-xs uppercase tracking-wider font-semibold hover:opacity-95 transition-all shadow-sm">
+                    <i class="fa-regular fa-copy mr-1"></i> Copiar Cuenta
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- RSVP SECTION -->
+    <section class="py-16 px-6 bg-gradient-to-b from-champagne to-roseGold-light relative">
+        <div class="max-w-lg mx-auto glass-card p-8 rounded-3xl shadow-xl border border-gold/30">
+            <div class="text-center mb-8">
+                <span class="text-xs uppercase tracking-[0.3em] text-gold-dark font-cinzel font-semibold">Confirmación</span>
+                <h2 class="font-cinzel text-2xl font-bold text-neutral-800 mt-2">ASISTENCIA</h2>
+                <div class="w-12 h-[1px] bg-gold mx-auto mt-2 mb-3"></div>
+                <p class="text-xs text-neutral-600 font-light">Por favor confirma tu asistencia antes del <strong class="text-neutral-800">30 de Octubre de 2026</strong>.</p>
+            </div>
+
+            <form id="rsvpForm" onsubmit="handleRSVP(event)" class="space-y-4">
+                <div>
+                    <label class="block font-cinzel text-xs font-semibold text-neutral-700 uppercase mb-1">Nombre de Invitado / Familia</label>
+                    <input type="text" id="guestName" required placeholder="Ej. Familia Pérez Gómez" class="w-full px-4 py-3 rounded-xl border border-neutral-300 bg-white text-sm focus:outline-none focus:border-gold transition-colors">
+                </div>
+
+                <div>
+                    <label class="block font-cinzel text-xs font-semibold text-neutral-700 uppercase mb-1">Número de Asistentes / Boletos</label>
+                    <select id="guestCount" required class="w-full px-4 py-3 rounded-xl border border-neutral-300 bg-white text-sm focus:outline-none focus:border-gold transition-colors">
+                        <option value="" disabled selected>Selecciona cantidad</option>
+                        <option value="1">1 Persona</option>
+                        <option value="2">2 Personas</option>
+                        <option value="3">3 Personas</option>
+                        <option value="4">4 Personas</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block font-cinzel text-xs font-semibold text-neutral-700 uppercase mb-1">Comentarios para la Quinceañera</label>
+                    <textarea id="guestMessage" rows="3" placeholder="Escribe un mensaje bonito para Sofía..." class="w-full px-4 py-3 rounded-xl border border-neutral-300 bg-white text-sm focus:outline-none focus:border-gold transition-colors"></textarea>
+                </div>
+
+                <button type="submit" class="w-full py-3.5 rounded-xl gold-gradient-bg text-white font-cinzel text-xs uppercase tracking-widest font-bold hover:opacity-95 transition-all shadow-md">
+                    Confirmar Asistencia
+                </button>
+            </form>
+
+            <!-- Success Message Box -->
+            <div id="rsvpSuccess" class="hidden text-center py-6">
+                <div class="w-14 h-14 rounded-full bg-green-100 text-green-600 flex items-center justify-center text-2xl mx-auto mb-4">
+                    <i class="fa-solid fa-check"></i>
+                </div>
+                <h3 class="font-cinzel text-lg font-bold text-neutral-800 mb-1">¡Asistencia Confirmada!</h3>
+                <p id="successText" class="text-xs text-neutral-600 font-light"></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-10 bg-neutral-900 text-white text-center px-6">
+        <h3 class="font-script text-3xl text-roseGold mb-2">Sofía Valentina</h3>
+        <p class="font-cinzel text-xs tracking-[0.2em] uppercase text-neutral-400 mb-4">¡Te esperamos con mucha ilusión!</p>
+        <div class="w-8 h-[1px] bg-gold mx-auto mb-4"></div>
+        <p class="text-[10px] text-neutral-500">&copy; 2026 Powered By <a href="#">Implustec</a></p>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Countdown Timer Logic
+        const eventDate = new Date("November 14, 2026 17:00:00").getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = eventDate - now;
+
+            if (distance < 0) {
+                document.getElementById("days").innerText = "00";
+                document.getElementById("hours").innerText = "00";
+                document.getElementById("minutes").innerText = "00";
+                document.getElementById("seconds").innerText = "00";
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = String(days).padStart(2, '0');
+            document.getElementById("hours").innerText = String(hours).padStart(2, '0');
+            document.getElementById("minutes").innerText = String(minutes).padStart(2, '0');
+            document.getElementById("seconds").innerText = String(seconds).padStart(2, '0');
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Copy Account Number Logic
+        function copyAccount() {
+            const accountText = document.getElementById("accountNum").innerText;
+            const textArea = document.createElement("textarea");
+            textArea.value = accountText;
+            document.body.appendChild(textArea);
+            textArea.select();
+            try {
+                document.execCommand('copy');
+                const btn = document.getElementById("copyBtn");
+                btn.innerHTML = '<i class="fa-solid fa-check mr-1"></i> ¡Número Copiado!';
+                setTimeout(() => {
+                    btn.innerHTML = '<i class="fa-regular fa-copy mr-1"></i> Copiar Cuenta';
+                }, 3000);
+            } catch (err) {
+                console.error('Error al copiar', err);
+            }
+            document.body.removeChild(textArea);
+        }
+
+        // Handle RSVP Form Submission
+        function handleRSVP(event) {
+            event.preventDefault();
+            const name = document.getElementById("guestName").value;
+            const count = document.getElementById("guestCount").value;
+            
+            document.getElementById("rsvpForm").classList.add("hidden");
+            const successDiv = document.getElementById("rsvpSuccess");
+            successDiv.classList.remove("hidden");
+            document.getElementById("successText").innerHTML = `Gracias <strong>${name}</strong>.<br>Hemos registrado tus <strong>${count} boletos</strong>.<br>¡Nos encantará contar contigo en este día tan especial!`;
+        }
+
+        // Audio Toggle Logic
+        const audioToggle = document.getElementById("audioToggle");
+        const bgMusic = document.getElementById("bgMusic");
+        const audioIcon = document.getElementById("audioIcon");
+        let isPlaying = false;
+
+        audioToggle.addEventListener("click", () => {
+            if (isPlaying) {
+                bgMusic.pause();
+                audioIcon.classList.remove("fa-pause", "fa-spin");
+                audioIcon.classList.add("fa-music");
+                isPlaying = false;
+            } else {
+                bgMusic.play().catch(e => console.log("Audio autoplay restricted"));
+                audioIcon.classList.remove("fa-music");
+                audioIcon.classList.add("fa-pause", "fa-spin");
+                isPlaying = true;
+            }
+        });
+    </script>
+</body>
+</html>
